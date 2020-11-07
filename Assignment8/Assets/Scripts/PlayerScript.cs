@@ -48,11 +48,8 @@ public class PlayerScript : MonoBehaviour
 
     void Fire()
     {
-        GameObject Projectile = Instantiate(weaponTypes[currentWeapon], transform.position, transform.rotation);
 
-        Projectile.GetComponent<Particle2D>().Create(1.0f, new Vector2(0, 0), new Vector2(0, 0), .999f);
-
-        GameObject.Find("GameManager").GetComponent<GameManager>().addParticle(Projectile);
+        GameManager.MakeProjectile(transform, weaponTypes[currentWeapon]);
 
         //Add to Game manager list of particles to integrate
 
