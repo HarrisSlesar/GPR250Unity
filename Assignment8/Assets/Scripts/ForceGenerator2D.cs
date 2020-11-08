@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ForceManager : MonoBehaviour
+public class ForceGenerator2D : MonoBehaviour
 {
-
-    List<ForceGenerator2D> generatorList = new List<ForceGenerator2D>();
-    public static ForceManager instance;
     // Start is called before the first frame update
     void Start()
     {

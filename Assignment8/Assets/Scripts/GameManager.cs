@@ -37,9 +37,19 @@ public class GameManager : MonoBehaviour
     public static void MakeProjectile(Transform trans, GameObject type)
     {
         GameObject projectile = Instantiate(type, trans.position, trans.rotation);
+        Vector3 direction = Vector3.right;
+        float angle = trans.eulerAngles.z * Mathf.Deg2Rad;
+        float sin = Mathf.Sin(angle);
+        float cos = Mathf.Cos(angle);
 
-        Vector3 facing = trans.rotation * Vector3.forward;
-        projectile.GetComponent<Particle2D>().Create(1, new Vector2(1, 0), new Vector2(0, -0.01f), 0.999f);
+        Vector3 forward = new Vector3(
+            direction.x * cos - direction.y * sin,
+            direction.x * sin + direction.y * cos,
+            0f);
+
+
+
+        projectile.GetComponent<Particle2D>().Create(1, forward, new Vector2(0, -0.01f), 0.999f, 2);
         particleList.Add(projectile);
     }
     
