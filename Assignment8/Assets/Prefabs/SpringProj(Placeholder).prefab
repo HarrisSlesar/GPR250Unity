@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6682910385282315726}
   - component: {fileID: 4129292193716357820}
   - component: {fileID: 6798350299500668058}
+  - component: {fileID: 6013006755384856648}
   m_Layer: 0
   m_Name: SpringProj(Placeholder)
   m_TagString: Untagged
@@ -96,3 +97,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shouldIgnoreForces: 0
+--- !u!114 &6013006755384856648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7360119036216932060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf1b47d016824f548b9756ef15fcea12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

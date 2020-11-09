@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Particle2D : MonoBehaviour
 {
+    int unitID;
     float mass;
     Vector2 velocity;
     float speed;
@@ -13,21 +14,25 @@ public class Particle2D : MonoBehaviour
     float dampingConstant;
     public bool shouldIgnoreForces;
 
-    ForceGenerator2D generator;
+    ForceGenerator2D generator = new ForceGenerator2D();
 
     // Start is called before the first frame update
     void Start()
     {
+       
         shouldIgnoreForces = false;
+        
+       
     }
 
     // Update is called once per frame
     void Update()
     {
         //Debug.Log(velocity);
+        
     }
 
-    public void Create(float m, Vector2 dir, Vector2 a, float d, float s)
+    public void Create(float m, Vector2 dir, Vector2 a, float d, float s, int id)
     {
         mass = m;
         direction = dir;
@@ -35,7 +40,14 @@ public class Particle2D : MonoBehaviour
         dampingConstant = d;
         speed = s;
         velocity = direction * speed;
-       // Debug.Log(direction);
+        // Debug.Log(direction);
+        unitID = id;
+       
+        //generator = new BouyancyGenerator();
+        //generator.SetID(id);
+        //ForceManager.AddGenerator(generator);
+
+
     }
 
     public Vector2 GetVelocity()
@@ -83,8 +95,17 @@ public class Particle2D : MonoBehaviour
         accumulatedForces = new Vector2(0, 0);
     }
 
-    public void AddGenerator()
-    {
+    
 
+    public void AddForce(Vector2 force)
+    {
+        accumulatedForces += force;
     }
+
+    public int GetID()
+    {
+        return unitID;
+    }
+
+    
 }
