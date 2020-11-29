@@ -42,9 +42,9 @@ public class Integrator : MonoBehaviour
         double damping = Math.Pow((double)stats.GetDamping(), .016);
         vel = vel * (float)damping;
 
-       
-        stats.SetVel(vel);
-        stats.SetAcc(acc);
+
+        particle.GetComponent<Particle2D>().SetVel(vel);
+        particle.GetComponent<Particle2D>().SetAcc(acc);
 
         particle.GetComponent<Particle2D>().ClearForces();
         return;

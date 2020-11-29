@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ContactResolver : MonoBehaviour
 {
-    public static ContactResolver instance;
-    public static List<Particle2DContact> contacts = new List<Particle2DContact>();
-	static int mIterations = 10;
+    
+    
+	private int mIterations = 10;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +20,7 @@ public class ContactResolver : MonoBehaviour
     }
 
 
-	public static void resolveContacts()
+	public void resolveContacts(List<Particle2DContact> contacts)
 	{
 		int mIterationsUsed = 0;
 		while (mIterationsUsed < mIterations)

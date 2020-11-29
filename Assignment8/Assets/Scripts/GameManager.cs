@@ -10,10 +10,12 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public static List<GameObject> particleList = new List<GameObject>();
     public static List<int> destroyList = new List<int>();
-
+    public static int score = 0;
+    public GameObject target;
     static int unitID = 0;
     BouyancyGenerator generator = new BouyancyGenerator();
     static List<Particle2DLink> linkList = new List<Particle2DLink>();
+    public static List<Particle2DContact> contacts = new List<Particle2DContact>();
     // Start is called before the first frame update
     void Start()
     {
@@ -28,18 +30,24 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-       for(int i = 0; i < particleList.Count; i++)
-       {
+        foreach (Particle2DLink it in linkList)
+        {
+            it.CreateContacts(particleList[it.id1], particleList[it.id2]);
+        }
+        ContactResolver resolver = new ContactResolver();
+        resolver.resolveContacts(contacts);
+        for (int i = 0; i < particleList.Count; i++)
+        {
             if (particleList[i] != null)
-            {
-                foreach (Particle2DLink it in linkList)
+            { 
+                if( Vector2.Distance(particleList[i].transform.position, target.transform.position) <= .5)
                 {
-                    it.CreateContacts(particleList[it.id1], particleList[it.id2]);
+                    particleList[i].GetComponent<Particle2D>().Remove();
+                    target.GetComponent<Target>().GetHit();
                 }
                 Integrator.Integrate(particleList[i]);
-                ContactResolver.resolveContacts();
             }
-       }
+        }
         foreach (int itr in destroyList)
         {
             Destroy(particleList[itr]);
@@ -100,6 +108,7 @@ public class GameManager : MonoBehaviour
             Particle2DLink newLink = new Particle2DLink();
             newLink.id1 = projectile.GetComponent<Particle2D>().GetID();
             newLink.id2 = projectile2.GetComponent<Particle2D>().GetID();
+
             linkList.Add(newLink);
 
            

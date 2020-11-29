@@ -23,8 +23,6 @@ public class ForceManager : MonoBehaviour
     public static void AddGenerator(ForceGenerator2D gen)
     {
         generatorList.Add(gen);
-        Debug.Log("Gen added");
-        Debug.Log(generatorList.Count);
     }
 
     public static void UpdateForces()

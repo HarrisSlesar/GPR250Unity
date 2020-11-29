@@ -23,10 +23,7 @@ public class Particle2DContact : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if(mObj1 == null || mObj2 == null)
-		{
-			ContactResolver.contacts.Remove(this);
-		}
+		
     }
 
 	public void create(GameObject pOne, GameObject pTwo, float rest, Vector2 contactN, float pen, Vector2 mOne, Vector2 mTwo)
@@ -49,9 +46,12 @@ public class Particle2DContact : MonoBehaviour
 
 	public float calculateSeparatingVelocity()
 	{
-		if (mObj1 == null || mObj2 == null)
-			return 0;
-		Vector2 relativeVel = mObj1.GetComponent<Particle2D>().GetVelocity();
+		Vector2 relativeVel = new Vector2(0,0);
+		if (mObj1)
+		{
+			relativeVel = mObj1.GetComponent<Particle2D>().GetVelocity();
+			
+		}
 		if (mObj2)
 		{
 			relativeVel -= mObj2.GetComponent<Particle2D>().GetVelocity();

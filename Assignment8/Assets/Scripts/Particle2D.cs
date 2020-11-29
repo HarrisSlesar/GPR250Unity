@@ -33,8 +33,7 @@ public class Particle2D : MonoBehaviour
         if(!this.gameObject.GetComponent<Renderer>().isVisible)
         {
 
-            shouldBeDestroyed = true;
-            GameManager.destroyList.Add(unitID);
+            Remove();
 
         }
         //Debug.Log(velocity);
@@ -116,5 +115,9 @@ public class Particle2D : MonoBehaviour
         return unitID;
     }
 
-    
+    public void Remove()
+    {
+        shouldBeDestroyed = true;
+        GameManager.destroyList.Add(unitID);
+    }
 }

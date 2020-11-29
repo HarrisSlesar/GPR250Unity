@@ -23,10 +23,8 @@ public class Particle2DLink : MonoBehaviour
     {
         if (object1 == null || object2 == null)
             return;
-        Debug.Log("contact created");
 
         float currentLength = getCurrentLength(object1, object2);
-        Debug.Log(currentLength);
         if (currentLength == mLength)
         {
             return;
@@ -47,7 +45,7 @@ public class Particle2DLink : MonoBehaviour
         Particle2DContact contact = new Particle2DContact();
         contact.create(object1, object2, 0.0f, normal, penetration, new Vector2(0,0), new Vector2(0, 0));
 
-        ContactResolver.contacts.Add(contact);
+        GameManager.contacts.Add(contact);
 
     }
 
