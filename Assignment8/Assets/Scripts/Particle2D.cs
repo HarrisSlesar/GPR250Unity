@@ -5,6 +5,7 @@ using UnityEngine;
 public class Particle2D : MonoBehaviour
 {
     int unitID;
+    public int contactId;
     float mass;
     Vector2 velocity;
     float speed;
@@ -13,6 +14,7 @@ public class Particle2D : MonoBehaviour
     Vector2 accumulatedForces;
     float dampingConstant;
     public bool shouldIgnoreForces;
+    public bool shouldBeDestroyed = false;
 
     ForceGenerator2D generator = new ForceGenerator2D();
 
@@ -28,6 +30,13 @@ public class Particle2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!this.gameObject.GetComponent<Renderer>().isVisible)
+        {
+
+            shouldBeDestroyed = true;
+            GameManager.destroyList.Add(unitID);
+
+        }
         //Debug.Log(velocity);
         
     }
@@ -71,7 +80,7 @@ public class Particle2D : MonoBehaviour
 
     public float GetInverseMass()
     {
-        return mass * -1;
+        return 1.0f/mass;
     }
 
     public float GetDamping()

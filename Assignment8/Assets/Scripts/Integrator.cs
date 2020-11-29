@@ -35,7 +35,7 @@ public class Integrator : MonoBehaviour
 
         if (!stats.shouldIgnoreForces)//accumulate forces here
         {
-            acc += stats.GetAccumulatedForces() * stats.GetInverseMass();
+            acc -= stats.GetAccumulatedForces() * stats.GetInverseMass();
         }
 
         vel += (acc * .016f);
@@ -46,7 +46,7 @@ public class Integrator : MonoBehaviour
         stats.SetVel(vel);
         stats.SetAcc(acc);
 
-        stats.ClearForces();
+        particle.GetComponent<Particle2D>().ClearForces();
         return;
     }
     

@@ -7,10 +7,10 @@ using UnityEngine.Assertions;
 public class BouyancyGenerator : ForceGenerator2D
 {
     
-    float mSurfaceHeight = 5;
+    float mSurfaceHeight = 3;
     float mMaxDepth = 0.25f;
     float mVolume = 1;
-    float mLiquidDensity = .1f;
+    float mLiquidDensity = 1f;
 
     void Start()
     {
@@ -19,11 +19,8 @@ public class BouyancyGenerator : ForceGenerator2D
 
     public override void UpdateForce(GameObject particle)
     {
-        
-        if(!particle)
-        {
-            Debug.Log("testing");
-        }
+        if (particle == null)
+            return;
 
         float depth = particle.transform.position.y;
 

@@ -31,7 +31,7 @@ public class ForceManager : MonoBehaviour
     {
        
         GameObject particle;
-
+       
 
         foreach (ForceGenerator2D var in generatorList)
         {
@@ -40,16 +40,19 @@ public class ForceManager : MonoBehaviour
             {
                 foreach (GameObject par in GameManager.particleList)
                 {
-                    var.UpdateForce(par);
+                    if(par != null)
+                        var.UpdateForce(par);
                 }
             }
             else
             {
                 particle = GameManager.particleList[var.GetID()];
-
-                if (particle.GetComponent<Particle2D>().GetID() == var.GetID())
+                if (particle != null)
                 {
-                    var.UpdateForce(particle);
+                    if (particle.GetComponent<Particle2D>().GetID() == var.GetID())
+                    {
+                        var.UpdateForce(particle);
+                    }
                 }
             }
         }

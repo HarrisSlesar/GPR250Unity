@@ -39,7 +39,8 @@ public class SpringGenerator : ForceGenerator2D
 
         diff.Normalize();
         diff *= -magnitude;
-        Debug.Log(diff);
+       
+
         particle2.GetComponent<Particle2D>().AddForce(diff);
         particle.GetComponent<Particle2D>().AddForce(new Vector2(-diff.x, -diff.y));
 

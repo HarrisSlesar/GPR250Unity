@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -8,15 +9,17 @@ public class GameManager : MonoBehaviour
     
     public static GameManager instance;
     public static List<GameObject> particleList = new List<GameObject>();
+    public static List<int> destroyList = new List<int>();
+
     static int unitID = 0;
     BouyancyGenerator generator = new BouyancyGenerator();
+    static List<Particle2DLink> linkList = new List<Particle2DLink>();
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Start");
         instance = this;
-        
-        
+
         generator = GetComponent<BouyancyGenerator>();
         generator.SetShouldEffectAll(true);
         ForceManager.AddGenerator(generator);
@@ -27,8 +30,24 @@ public class GameManager : MonoBehaviour
     {
        for(int i = 0; i < particleList.Count; i++)
        {
-           Integrator.Integrate(particleList[i]);
+            if (particleList[i] != null)
+            {
+                foreach (Particle2DLink it in linkList)
+                {
+                    it.CreateContacts(particleList[it.id1], particleList[it.id2]);
+                }
+                Integrator.Integrate(particleList[i]);
+                ContactResolver.resolveContacts();
+            }
        }
+        foreach (int itr in destroyList)
+        {
+            Destroy(particleList[itr]);
+            particleList[itr] = null;
+            
+            
+        }
+        destroyList.Clear();
     }
 
     public List<GameObject> getList()
@@ -57,7 +76,7 @@ public class GameManager : MonoBehaviour
 
 
 
-        projectile.GetComponent<Particle2D>().Create(1, forward, new Vector2(0, -.01f), 0.999f, 3, unitID);
+        projectile.GetComponent<Particle2D>().Create(1, forward, new Vector2(0, -.01f), 0.999f, 10, unitID);
         particleList.Add(projectile);
         unitID += 1;
         if (type.name.Contains("Spring"))
@@ -71,6 +90,19 @@ public class GameManager : MonoBehaviour
             ForceManager.AddGenerator(newGenerator);
             newGenerator.SetID(projectile.GetComponent<Particle2D>().GetID(), projectile2.GetComponent<Particle2D>().GetID());
 
+        }
+        else if(type.name.Contains("Rod"))
+        {
+            GameObject projectile2 = Instantiate(type, trans.position, trans.rotation);
+            projectile2.GetComponent<Particle2D>().Create(1, forward, new Vector2(0, -.01f), 0.999f, 2, unitID);
+            particleList.Add(projectile2);
+            unitID += 1;
+            Particle2DLink newLink = new Particle2DLink();
+            newLink.id1 = projectile.GetComponent<Particle2D>().GetID();
+            newLink.id2 = projectile2.GetComponent<Particle2D>().GetID();
+            linkList.Add(newLink);
+
+           
         }
         
     }
