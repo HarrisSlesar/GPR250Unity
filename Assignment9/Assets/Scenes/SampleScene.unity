@@ -316,6 +316,8 @@ MonoBehaviour:
   target: {fileID: 1226144657}
   randomParticle: {fileID: 7360119036216932060, guid: ff08316d350873a43b7fd73610d504a6,
     type: 3}
+  contactPrefab: {fileID: 3252639866844639758, guid: dc59ff121bbfcc24c86b612679fa83a0,
+    type: 3}
 --- !u!4 &945292464
 Transform:
   m_ObjectHideFlags: 0
@@ -379,6 +381,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5e08a5d1f582d47b43e14144900bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1039517070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1039517071}
+  m_Layer: 0
+  m_Name: ContactParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1039517071
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039517070}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.334481, y: -8.881234, z: -24.146708}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1226144657 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9083303435977760532, guid: e21ba24cb683c9f4b84a7051563dc95f,

@@ -20,7 +20,7 @@ public class ContactResolver : MonoBehaviour
     }
 
 
-	public void resolveContacts(List<Particle2DContact> contacts)
+	public void resolveContacts(List<GameObject> contacts)
 	{
 		mIterations = 10;
 		int mIterationsUsed = 0;
@@ -31,8 +31,8 @@ public class ContactResolver : MonoBehaviour
 			int maxIndex = numContacts;
 			for (int i = 0; i < numContacts; i++)
 			{
-				float sepVel = contacts[i].calculateSeparatingVelocity();
-				if (sepVel < max && (sepVel < 0.0f || contacts[i].mPenetration > 0.0f))
+				float sepVel = contacts[i].GetComponent<Particle2DContact>().calculateSeparatingVelocity();
+				if (sepVel < max && (sepVel < 0.0f || contacts[i].GetComponent<Particle2DContact>().mPenetration > 0.0f))
 				{
 					max = sepVel;
 					maxIndex = i;
@@ -41,32 +41,37 @@ public class ContactResolver : MonoBehaviour
 			if (maxIndex == numContacts)
 				break;
 
-			contacts[maxIndex].resolve();
+			contacts[maxIndex].GetComponent<Particle2DContact>().resolve();
 
 			for (int i = 0; i < numContacts; i++)
 			{
-				if (contacts[i].mObj1 == contacts[maxIndex].mObj1)
+				if (contacts[i].GetComponent<Particle2DContact>().mObj1 == contacts[maxIndex].GetComponent<Particle2DContact>().mObj1)
 				{
-					contacts[i].mPenetration -= Vector2.Dot(contacts[maxIndex].mMove1,contacts[i].mContactNormal);
+					contacts[i].GetComponent<Particle2DContact>().mPenetration -= Vector2.Dot(contacts[maxIndex].GetComponent<Particle2DContact>().mMove1,contacts[i].GetComponent<Particle2DContact>().mContactNormal);
 				}
-				else if (contacts[i].mObj1 == contacts[maxIndex].mObj2)
+				else if (contacts[i].GetComponent<Particle2DContact>().mObj1 == contacts[maxIndex].GetComponent<Particle2DContact>().mObj2)
 				{
-					contacts[i].mPenetration -= Vector2.Dot(contacts[maxIndex].mMove2, contacts[i].mContactNormal);
+					contacts[i].GetComponent<Particle2DContact>().mPenetration -= Vector2.Dot(contacts[maxIndex].GetComponent<Particle2DContact>().mMove2, contacts[i].GetComponent<Particle2DContact>().mContactNormal);
 				}
 
-				if (contacts[i].mObj2)
+				if (contacts[i].GetComponent<Particle2DContact>().mObj2)
 				{
-					if (contacts[i].mObj2 == contacts[maxIndex].mObj1)
+					if (contacts[i].GetComponent<Particle2DContact>().mObj2 == contacts[maxIndex].GetComponent<Particle2DContact>().mObj1)
 					{
-						contacts[i].mPenetration += Vector2.Dot(contacts[maxIndex].mMove1, contacts[i].mContactNormal);
+						contacts[i].GetComponent<Particle2DContact>().mPenetration += Vector2.Dot(contacts[maxIndex].GetComponent<Particle2DContact>().mMove1, contacts[i].GetComponent<Particle2DContact>().mContactNormal);
 					}
-					else if (contacts[i].mObj2 == contacts[maxIndex].mObj2)
+					else if (contacts[i].GetComponent<Particle2DContact>().mObj2 == contacts[maxIndex].GetComponent<Particle2DContact>().mObj2)
 					{
-						contacts[i].mPenetration -= Vector2.Dot(contacts[maxIndex].mMove2, contacts[i].mContactNormal);
+						contacts[i].GetComponent<Particle2DContact>().mPenetration -= Vector2.Dot(contacts[maxIndex].GetComponent<Particle2DContact>().mMove2, contacts[i].GetComponent<Particle2DContact>().mContactNormal);
 					}
 				}
 			}
 			mIterationsUsed++;
 		}
+		for(int i = 0; i < contacts.Count; i++)
+		{
+			Destroy(contacts[i]);
+		}
+		contacts.Clear();
 	}
 }

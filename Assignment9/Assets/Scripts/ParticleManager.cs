@@ -55,9 +55,13 @@ public class ParticleManager : MonoBehaviour
         {
             if (par != null)
             {
-                if (!par.GetComponent<Renderer>().isVisible && !GameManager.destroyList.Contains(par.GetComponent<Particle2D>().GetID()))
+                Vector3 viewPos = UnityEngine.Camera.main.WorldToViewportPoint(par.transform.position);
+                if (!(viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1 && viewPos.z > 0))
                 {
-                    GameManager.destroyList.Add(par.GetComponent<Particle2D>().GetID());
+                    if (!GameManager.destroyList.Contains(par.GetComponent<Particle2D>().GetID()))
+                    {
+                        GameManager.destroyList.Add(par.GetComponent<Particle2D>().GetID());
+                    }
                 }
             }
         }

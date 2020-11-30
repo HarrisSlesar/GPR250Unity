@@ -6,12 +6,13 @@ public class SpringGenerator : ForceGenerator2D
 {
 
     int ID2;
-    float springConstant = 2f;
-    float restLength = .3f;
+    float springConstant;
+    float restLength;
 
     void Start()
     {
-
+        restLength = .3f;
+        springConstant = 2f;
     }
 
     public override void UpdateForce(GameObject particle)
@@ -21,6 +22,7 @@ public class SpringGenerator : ForceGenerator2D
         if (!particle || !particle2)
         {
             Debug.Log("no particles");
+            Destroy(this);
             return;
         }
 

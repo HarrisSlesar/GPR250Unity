@@ -15,11 +15,13 @@ public class GameManager : MonoBehaviour
     static int unitID = 0;
     BouyancyGenerator generator;
     static List<Particle2DLink> linkList = new List<Particle2DLink>();
-    public static List<Particle2DContact> contacts = new List<Particle2DContact>();
+    public static List<GameObject> contacts = new List<GameObject>();
 
-    public static ParticleManager particleManager = new ParticleManager();
-
+    public static ParticleManager particleManager;
+    ContactResolver resolver;
     public GameObject randomParticle;
+
+    public GameObject contactPrefab;
     float frame = 0;
     // Start is called before the first frame update
     void Start()
@@ -27,10 +29,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("Start");
         instance = this;
 
-        particleManager = GetComponent<ParticleManager>();
+        particleManager = this.gameObject.AddComponent<ParticleManager>();
         generator = GetComponent<BouyancyGenerator>();
         generator.SetShouldEffectAll(true);
         ForceManager.AddGenerator(generator);
+        resolver = this.gameObject.AddComponent<ContactResolver>();
     }
 
     // Update is called once per frame
@@ -38,9 +41,10 @@ public class GameManager : MonoBehaviour
     {
         foreach (Particle2DLink it in linkList)
         {
-            it.CreateContacts(particleManager.GetParticle(it.id1), particleManager.GetParticle(it.id2));
+            it.CreateContacts(particleManager.GetParticle(it.id1), particleManager.GetParticle(it.id2), contactPrefab);
         }
-        ContactResolver resolver = new ContactResolver();
+        
+       
         resolver.resolveContacts(contacts);
         particleManager.ParticleUpdate();
         for (int i = 0; i < particleManager.GetCount(); i++)
@@ -66,6 +70,7 @@ public class GameManager : MonoBehaviour
             MakeRandomProjectile(randomParticle);
             frame = 0;
         }
+        
     }
 
     public void MakeRandomProjectile(GameObject part)
@@ -104,7 +109,7 @@ public class GameManager : MonoBehaviour
             projectile2.GetComponent<Particle2D>().Create(1, forward, new Vector2(0, -.01f), 0.999f, 1, unitID);
             particleManager.AddParticle(projectile2);
             unitID += 1;
-            SpringGenerator newGenerator = new SpringGenerator();
+            SpringGenerator newGenerator = instance.gameObject.AddComponent<SpringGenerator>();
             newGenerator.SetShouldEffectAll(false);
             ForceManager.AddGenerator(newGenerator);
             newGenerator.SetID(projectile.GetComponent<Particle2D>().GetID(), projectile2.GetComponent<Particle2D>().GetID());
@@ -116,7 +121,7 @@ public class GameManager : MonoBehaviour
             projectile2.GetComponent<Particle2D>().Create(1, forward, new Vector2(0, -.01f), 0.999f, 2, unitID);
             particleManager.AddParticle(projectile2);
             unitID += 1;
-            Particle2DLink newLink = new Particle2DLink();
+            Particle2DLink newLink = instance.gameObject.AddComponent<Particle2DLink>();
             newLink.id1 = projectile.GetComponent<Particle2D>().GetID();
             newLink.id2 = projectile2.GetComponent<Particle2D>().GetID();
 

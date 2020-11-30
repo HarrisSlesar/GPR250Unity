@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class Particle2DLink : MonoBehaviour
 {
-    float mLength = 1;
+    float mLength;
     public int id1, id2;
     // Start is called before the first frame update
     void Start()
     {
-
+        mLength = 1f;
     }
 
     // Update is called once per frame
@@ -19,7 +19,7 @@ public class Particle2DLink : MonoBehaviour
         
     }
 
-    public void CreateContacts(GameObject object1, GameObject object2)
+    public void CreateContacts(GameObject object1, GameObject object2, GameObject prefab)
     {
         if (object1 == null || object2 == null)
             return;
@@ -42,10 +42,13 @@ public class Particle2DLink : MonoBehaviour
             penetration = (mLength - currentLength)/100;
 
         }
-        Particle2DContact contact = new Particle2DContact();
+        
+        GameObject newContact = Instantiate(prefab);
+        
+        Particle2DContact contact = newContact.GetComponent<Particle2DContact>();
         contact.create(object1, object2, 0.0f, normal, penetration, new Vector2(0,0), new Vector2(0, 0));
 
-        GameManager.contacts.Add(contact);
+        GameManager.contacts.Add(newContact);
 
     }
 
