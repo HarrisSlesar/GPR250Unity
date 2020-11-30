@@ -16,8 +16,8 @@ public class SpringGenerator : ForceGenerator2D
 
     public override void UpdateForce(GameObject particle)
     {
-        particle = GameManager.particleList[mId];
-        GameObject particle2 = GameManager.particleList[ID2];
+        particle = GameManager.particleManager.GetParticle(mId);
+        GameObject particle2 = GameManager.particleManager.GetParticle(ID2);
         if (!particle || !particle2)
         {
             Debug.Log("no particles");
@@ -32,7 +32,6 @@ public class SpringGenerator : ForceGenerator2D
         float dist = diff.magnitude;
 
         float magnitude = dist - restLength;
-        Debug.Log(magnitude);
         //if (magnitude < 0.0f)
         //magnitude = -magnitude;
         magnitude *= springConstant;
