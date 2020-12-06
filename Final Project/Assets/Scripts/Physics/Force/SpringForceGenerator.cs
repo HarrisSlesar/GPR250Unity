@@ -29,8 +29,10 @@ public class SpringForceGenerator : ForceGenerator2D
         diff.Normalize();
         diff *= -magnitude;
 
-        mObject1.GetComponent<Particle2D>().AccumulatedForces += diff;
-        mObject2.GetComponent<Particle2D>().AccumulatedForces -= diff;
+        if (mObject1.GetComponent<Particle2D>() != null)
+            mObject1.GetComponent<Particle2D>().AccumulatedForces += diff;
+        if (mObject2.GetComponent<Particle2D>() != null)
+            mObject2.GetComponent<Particle2D>().AccumulatedForces -= diff;
     }
 
     private GameObject mObject1;

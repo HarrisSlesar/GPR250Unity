@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class BungeeForceGenerator : ForceGenerator2D
 {
+    void Start()
+    {
+
+    }
     public void Initialize(GameObject object1, Vector2 anchorPoint, float springConstant, float restLength)
     {
         mObject1 = object1;
@@ -30,8 +34,8 @@ public class BungeeForceGenerator : ForceGenerator2D
         theObject.GetComponent<Particle2D>().AccumulatedForces += diff;
     }
 
-    private GameObject mObject1;
-    private Vector2 mAnchorPoint;
-    private float mSpringConstant;
-    private float mRestLength;
+    public GameObject mObject1;
+    public Vector2 mAnchorPoint;
+    public float mSpringConstant;
+    public float mRestLength;
 }
