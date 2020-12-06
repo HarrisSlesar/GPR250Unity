@@ -10,6 +10,7 @@ public class BuoyancyForceGenerator : ForceGenerator2D
         mLiquidDensity = liquidDensity;
         mSurfaceLevel = surfaceLevel;
         mMaxDepth = maxDepth;
+        mShouldEffectAll = true;
     }
     public override void UpdateForce(GameObject theObject)
     {

@@ -28,10 +28,10 @@ public class ForceManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        CreateBungeeForceGenerator(GameObject.Find("BungeePlatform"), GameObject.Find("BungeeAnchor").transform.position, 3, 2);
 
         //CreatePointForceGenerator(new Vector2(0, 0), 1);
-        CreateBuoyancyForceGenerator(25, 0, 0.05f);
+        CreateBuoyancyForceGenerator(25, -10, 0.05f);
     }
 
     // Update is called once per frame
@@ -46,13 +46,20 @@ public class ForceManager : MonoBehaviour
             }
             else
             {
-                foreach (Particle2D particle in ParticleManager.Instance.mParticles)
+                if (forceGenerator.mShouldEffectAll == true)
                 {
-                    if (particle.gameObject == null)
+                    foreach (Particle2D particle in ParticleManager.Instance.mParticles)
                     {
-                        return;
+                        if (particle.gameObject == null)
+                        {
+                            return;
+                        }
+                        forceGenerator.UpdateForce(particle.gameObject);
                     }
-                    forceGenerator.UpdateForce(particle.gameObject);
+                }
+                else
+                {
+                    forceGenerator.UpdateForce(null);
                 }
             }
         }

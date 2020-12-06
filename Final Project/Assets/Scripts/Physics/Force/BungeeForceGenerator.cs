@@ -15,9 +15,13 @@ public class BungeeForceGenerator : ForceGenerator2D
         mAnchorPoint = anchorPoint;
         mSpringConstant = springConstant;
         mRestLength = restLength;
+        
+
+        ParticleManager.Instance.mParticles.Add(object1.GetComponent<Particle2D>());
     }
     public override void UpdateForce(GameObject theObject)
     {
+        theObject = mObject1;
         Vector2 diff = (Vector2)theObject.transform.position - mAnchorPoint;
         float dist = Vector2.Distance(theObject.transform.position, mAnchorPoint);
 

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ForceGenerator2D : MonoBehaviour
 {
-    bool mShouldEffectAll;
+    public bool mShouldEffectAll = false;
 
     // Update is called once per frame
     void Update()
