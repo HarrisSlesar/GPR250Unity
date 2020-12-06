@@ -7,6 +7,10 @@ public class ParticleRod : Particle2DLink
 {
     float mLength;
 
+    void Start()
+    {
+
+    }
     public void Initialize(GameObject object1, GameObject object2, float length)
     {
         mObject1 = object1;

@@ -34,7 +34,8 @@ public class Particle2DCollision: MonoBehaviour
         Vector2 relativeVel = mObject1.GetComponent<Particle2D>().Velocity;
         if (mObject2)
         {
-            relativeVel -= mObject2.GetComponent<Particle2D>().Velocity;
+            if(mObject2.GetComponent<Particle2D>() != null)
+                relativeVel -= mObject2.GetComponent<Particle2D>().Velocity;
         }
         return Vector2.Dot(relativeVel, mContactNormal);
     }
@@ -52,7 +53,8 @@ public class Particle2DCollision: MonoBehaviour
         Vector2 velFromAcc = mObject1.GetComponent<Particle2D>().Acceleration;
         if (mObject2)
         {
-            velFromAcc -= mObject2.GetComponent<Particle2D>().Acceleration;
+            if (mObject2.GetComponent<Particle2D>() != null)
+                velFromAcc -= mObject2.GetComponent<Particle2D>().Acceleration;
         }
 
         float accCausedSepVelocity = Vector2.Dot(velFromAcc, mContactNormal) * Time.deltaTime;
@@ -71,7 +73,8 @@ public class Particle2DCollision: MonoBehaviour
         float totalInverseMass = (float)(1.0 / mObject1.GetComponent<Particle2D>().Mass);
         if (mObject2)
         {
-            totalInverseMass += (float)(1.0 / mObject2.GetComponent<Particle2D>().Mass);
+            if (mObject2.GetComponent<Particle2D>() != null)
+                totalInverseMass += (float)(1.0 / mObject2.GetComponent<Particle2D>().Mass);
         }
         if (totalInverseMass <= 0)
         {
@@ -85,8 +88,11 @@ public class Particle2DCollision: MonoBehaviour
         mObject1.GetComponent<Particle2D>().Velocity = newVelocity;
         if (mObject2)
         {
-            Vector2 newVelocity2 = mObject2.GetComponent<Particle2D>().Velocity + impulsePerIMass * -(float)(1.0 / mObject2.GetComponent<Particle2D>().Mass);
-            mObject2.GetComponent<Particle2D>().Velocity = newVelocity2;
+            if (mObject2.GetComponent<Particle2D>() != null)
+            {
+                Vector2 newVelocity2 = mObject2.GetComponent<Particle2D>().Velocity + impulsePerIMass * -(float)(1.0 / mObject2.GetComponent<Particle2D>().Mass);
+                mObject2.GetComponent<Particle2D>().Velocity = newVelocity2;
+            }
         }
     }
 
@@ -100,7 +106,8 @@ public class Particle2DCollision: MonoBehaviour
         float totalInverseMass = (float)(1.0 / mObject1.GetComponent<Particle2D>().Mass);
         if (mObject2)
         {
-            totalInverseMass += (float)(1.0 / mObject2.GetComponent<Particle2D>().Mass);
+            if (mObject2.GetComponent<Particle2D>() != null)
+                totalInverseMass += (float)(1.0 / mObject2.GetComponent<Particle2D>().Mass);
         }
         if (totalInverseMass <= 0)
         {
@@ -112,15 +119,19 @@ public class Particle2DCollision: MonoBehaviour
         mMove1 = movePerIMass * (float)(1.0 / mObject1.GetComponent<Particle2D>().Mass);
         if (mObject2)
         {
-            mMove2 = movePerIMass * -(float)(1.0 / mObject2.GetComponent<Particle2D>().Mass);
+            if (mObject2.GetComponent<Particle2D>() != null)
+                mMove2 = movePerIMass * -(float)(1.0 / mObject2.GetComponent<Particle2D>().Mass);
         }
 
         Vector2 newPosition = (Vector2)mObject1.transform.position + mMove1;
         mObject1.transform.position = newPosition;
         if (mObject2)
         {
-            Vector2 newPosition2 = (Vector2)mObject2.transform.position + mMove2;
-            mObject2.transform.position = newPosition2;
+            if (mObject2.GetComponent<Particle2D>() != null)
+            {
+                Vector2 newPosition2 = (Vector2)mObject2.transform.position + mMove2;
+                mObject2.transform.position = newPosition2;
+            }
         }
     }
 
