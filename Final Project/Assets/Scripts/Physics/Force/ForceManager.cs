@@ -28,7 +28,8 @@ public class ForceManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //CreateBungeeForceGenerator(GameObject.Find("BungeePlatform"), GameObject.Find("BungeeAnchor").transform.position, 3, 2);
+        CreateBungeeForceGenerator(GameObject.Find("BungeePlatform"), GameObject.Find("BungeeAnchor").transform.position, 3, 2);
+        CreateSpringForceGenerator(GameObject.Find("BungeePlatform"), GameObject.Find("RodPlatform"), 1, 5);
 
         //CreatePointForceGenerator(new Vector2(0, 0), 1);
         CreateBuoyancyForceGenerator(25, -10, 0.05f);
