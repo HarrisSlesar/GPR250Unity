@@ -19,7 +19,7 @@ public class Particle2D : MonoBehaviour
     public float x, y;
 
     public bool isPlayer = false;
-    
+    public bool isGrounded = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +54,11 @@ public class Particle2D : MonoBehaviour
         mRightEdge = x + width / 2;
         mBottomEdge = y - height / 2;
         mTopEdge = y + height / 2;
+
+        if(!isGrounded)
+        {
+            Acceleration = new Vector2(Acceleration.x, -10);
+        }
     }
     void OnBecameInvisible()
     {

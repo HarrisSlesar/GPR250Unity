@@ -47,6 +47,10 @@ public class ParticleManager : MonoBehaviour
                     {
                         if (particle.isPlayer)
                         {
+                            particle.isGrounded = true;
+                            particle.Velocity = particle2.Velocity;
+                            particle.Acceleration = particle2.Velocity;
+                            /*
                             Vector2 cOfMass = (particle.Velocity + particle2.Velocity) / 2;
                             Vector2 normal1 = particle2.transform.position - particle.transform.position;
                             normal1.Normalize();
@@ -60,6 +64,7 @@ public class ParticleManager : MonoBehaviour
                             particle2.Velocity -= cOfMass;
                             particle2.Velocity = Vector2.Reflect(particle2.Velocity, normal2);
                             particle2.Velocity += cOfMass;
+                            */
                         }
                     }
                  }
