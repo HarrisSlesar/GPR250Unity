@@ -161,6 +161,16 @@ MonoBehaviour:
   DampingConstant: 0.7
   shouldIgnoreForces: 0
   mRadius: 0
+  mLeftEdge: 0
+  mRightEdge: 0
+  mTopEdge: 0
+  mBottomEdge: 0
+  width: 0
+  height: 0
+  x: 0
+  y: 0
+  isPlayer: 0
+  isGrounded: 0
 --- !u!212 &96474294
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -220,7 +230,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96474292}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.289997, y: -2.72, z: 0}
+  m_LocalPosition: {x: 14.85, y: -2.72, z: 0}
   m_LocalScale: {x: 5.4758005, y: 1, z: 105.36}
   m_Children: []
   m_Father: {fileID: 0}
@@ -841,6 +851,16 @@ MonoBehaviour:
   DampingConstant: 0.7
   shouldIgnoreForces: 0
   mRadius: 0
+  mLeftEdge: 0
+  mRightEdge: 0
+  mTopEdge: 0
+  mBottomEdge: 0
+  width: 0
+  height: 0
+  x: 0
+  y: 0
+  isPlayer: 0
+  isGrounded: 0
 --- !u!212 &1077270490
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1315,6 +1335,16 @@ MonoBehaviour:
   DampingConstant: 0.7
   shouldIgnoreForces: 0
   mRadius: 0
+  mLeftEdge: 0
+  mRightEdge: 0
+  mTopEdge: 0
+  mBottomEdge: 0
+  width: 0
+  height: 0
+  x: 0
+  y: 0
+  isPlayer: 0
+  isGrounded: 0
 --- !u!212 &1670395449
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1468,10 +1498,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1842711404}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.18, y: 3.9, z: 0}
+  m_LocalRotation: {x: -0.008724224, y: -0.008724224, z: -0, w: 0.9999239}
+  m_LocalPosition: {x: 14.75, y: 1.69, z: 0.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1, y: -1, z: 0.009}
