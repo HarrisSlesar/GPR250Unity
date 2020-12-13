@@ -23,18 +23,19 @@ public class Particle2D : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        width = transform.localScale.x;
-        height = transform.localScale.y;
+        
         SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        width = spriteRenderer.bounds.extents.x;
+        height = spriteRenderer.bounds.extents.y;
         if (spriteRenderer)
         {
             //mRadius = spriteRenderer.bounds.extents.x;
             x = transform.position.x;
             y = transform.position.y;
-            mLeftEdge = x - width / 2;
-            mRightEdge = x + width / 2;
-            mBottomEdge = y - height / 2;
-            mTopEdge = y + height / 2;
+            mLeftEdge = x - width;
+            mRightEdge = x + width;
+            mBottomEdge = y - height;
+            mTopEdge = y + height;
             
         }
 
@@ -50,14 +51,14 @@ public class Particle2D : MonoBehaviour
     {
         x = transform.position.x;
         y = transform.position.y;
-        mLeftEdge = x - width / 2;
-        mRightEdge = x + width / 2;
-        mBottomEdge = y - height / 2;
-        mTopEdge = y + height / 2;
+        mLeftEdge = x - width;
+        mRightEdge = x + width;
+        mBottomEdge = y - height;
+        mTopEdge = y + height;
 
-        if(!isGrounded)
+        if (!isGrounded)
         {
-            Acceleration = new Vector2(Acceleration.x, -10);
+            Acceleration = new Vector2(0, -10);
         }
     }
     void OnBecameInvisible()

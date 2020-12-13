@@ -19,10 +19,10 @@ public static class CollisionDetector
 
     public static bool DetectRecCollision(Particle2D particle, Particle2D particle2)
     {
-        if (particle.x < particle2.x + particle2.width &&
-   particle.x + particle.width > particle2.x &&
-   particle.y < particle2.y + particle2.height &&
-   particle.y + particle.height > particle2.y)
+        if (particle.x - particle.width < particle2.x + (particle2.width) &&
+   particle.x + particle.width > particle2.x - (particle2.width) &&
+   particle.y - particle.height < particle2.y + particle2.height &&
+   particle.y + particle.height > particle2.y - (particle2.height))
         {
             
             return true;

@@ -47,25 +47,35 @@ public class ParticleManager : MonoBehaviour
                     {
                         if (particle.isPlayer)
                         {
-                            particle.isGrounded = true;
-                            particle.Velocity = particle2.Velocity;
-                            particle.Acceleration = particle2.Velocity;
-                            /*
-                            Vector2 cOfMass = (particle.Velocity + particle2.Velocity) / 2;
-                            Vector2 normal1 = particle2.transform.position - particle.transform.position;
-                            normal1.Normalize();
-                            Vector2 normal2 = particle.transform.position - particle2.transform.position;
-                            normal2.Normalize();
+                            if (!particle.isGrounded)
+                            {
+                                particle.isGrounded = true;
+                                particle.transform.position = new Vector2(particle.transform.position.x, particle2.transform.position.y + particle2.height + particle.height);
+                                
+                                particle.Velocity = particle2.Velocity;
+                                particle.Acceleration = particle2.Velocity;
+                                /*
+                                Vector2 cOfMass = (particle.Velocity + particle2.Velocity) / 2;
+                                Vector2 normal1 = particle2.transform.position - particle.transform.position;
+                                normal1.Normalize();
+                                Vector2 normal2 = particle.transform.position - particle2.transform.position;
+                                normal2.Normalize();
 
-                            particle.Velocity -= cOfMass;
-                            particle.Velocity = Vector2.Reflect(particle.Velocity, normal1);
-                            particle.Velocity += cOfMass;
+                                particle.Velocity -= cOfMass;
+                                particle.Velocity = Vector2.Reflect(particle.Velocity, normal1);
+                                particle.Velocity += cOfMass;
 
-                            particle2.Velocity -= cOfMass;
-                            particle2.Velocity = Vector2.Reflect(particle2.Velocity, normal2);
-                            particle2.Velocity += cOfMass;
-                            */
+                                particle2.Velocity -= cOfMass;
+                                particle2.Velocity = Vector2.Reflect(particle2.Velocity, normal2);
+                                particle2.Velocity += cOfMass;
+                                */
+                            }
+
                         }
+                    }
+                    else
+                    {
+                        particle.isGrounded = false;
                     }
                  }
                 

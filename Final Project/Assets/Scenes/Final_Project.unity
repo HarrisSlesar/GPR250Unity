@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 96474295}
   - component: {fileID: 96474294}
   - component: {fileID: 96474293}
-  - component: {fileID: 96474296}
   m_Layer: 0
   m_Name: RodPlatform
   m_TagString: Untagged
@@ -236,19 +235,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &96474296
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 96474292}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &112468237
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,19 +253,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &112468238
-BoxCollider:
+--- !u!114 &112468238
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 112468237}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0000002, y: 1.0000002, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d7c70630272ee747970b35529b20fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mass: 0
+  Velocity: {x: 0, y: 0}
+  Acceleration: {x: 0, y: 0}
+  AccumulatedForces: {x: 0, y: 0}
+  DampingConstant: 0
+  shouldIgnoreForces: 0
+  mRadius: 0
+  mLeftEdge: 0
+  mRightEdge: 0
+  mTopEdge: 0
+  mBottomEdge: 0
+  width: 0
+  height: 0
+  x: 0
+  y: 0
+  isPlayer: 0
+  isGrounded: 0
 --- !u!212 &112468239
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -445,19 +447,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &441861294
-BoxCollider:
+--- !u!114 &441861294
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 441861293}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0000002, y: 1.0000002, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d7c70630272ee747970b35529b20fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mass: 0
+  Velocity: {x: 0, y: 0}
+  Acceleration: {x: 0, y: 0}
+  AccumulatedForces: {x: 0, y: 0}
+  DampingConstant: 0
+  shouldIgnoreForces: 0
+  mRadius: 0
+  mLeftEdge: 0
+  mRightEdge: 0
+  mTopEdge: 0
+  mBottomEdge: 0
+  width: 0
+  height: 0
+  x: 0
+  y: 0
+  isPlayer: 0
+  isGrounded: 0
 --- !u!212 &441861295
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -824,7 +842,6 @@ GameObject:
   - component: {fileID: 1077270491}
   - component: {fileID: 1077270490}
   - component: {fileID: 1077270489}
-  - component: {fileID: 1077270492}
   m_Layer: 0
   m_Name: BungeePlatform
   m_TagString: Untagged
@@ -926,19 +943,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1077270492
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077270488}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1123279755
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,9 +1184,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1560841931}
   - component: {fileID: 1560841930}
-  - component: {fileID: 1560841933}
-  - component: {fileID: 1560841932}
   - component: {fileID: 1560841934}
+  - component: {fileID: 1560841932}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1230,7 +1233,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bf3b436f345831e4f90fc4c791f9879c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 60fb40d7c6ab01b4c99b0e2e9ce5cc8e, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1249,41 +1252,41 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1560841929}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.01, y: 1.44, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: -9.55, y: 2.95, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1560841932
-BoxCollider:
+--- !u!114 &1560841932
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1560841929}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.7286165, z: 0.2}
-  m_Center: {x: 0, y: 0.13569176, z: 0}
---- !u!54 &1560841933
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1560841929}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 120
-  m_CollisionDetection: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d7c70630272ee747970b35529b20fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mass: 1
+  Velocity: {x: 0, y: 0}
+  Acceleration: {x: 0, y: -10}
+  AccumulatedForces: {x: 0, y: 0}
+  DampingConstant: 0.7
+  shouldIgnoreForces: 0
+  mRadius: 0
+  mLeftEdge: 0
+  mRightEdge: 0
+  mTopEdge: 0
+  mBottomEdge: 0
+  width: 0
+  height: 0
+  x: 0
+  y: 0
+  isPlayer: 0
+  isGrounded: 0
 --- !u!114 &1560841934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1296,7 +1299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 029db55bcc050d843a67d00714eb4975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
+  speed: 0.03
 --- !u!1 &1670395447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1308,7 +1311,6 @@ GameObject:
   - component: {fileID: 1670395450}
   - component: {fileID: 1670395449}
   - component: {fileID: 1670395448}
-  - component: {fileID: 1670395451}
   m_Layer: 0
   m_Name: BoyancyPlatform
   m_TagString: Untagged
@@ -1410,19 +1412,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1670395451
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1670395447}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1842711404
 GameObject:
   m_ObjectHideFlags: 0
