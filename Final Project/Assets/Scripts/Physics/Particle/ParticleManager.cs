@@ -39,16 +39,31 @@ public class ParticleManager : MonoBehaviour
 
         foreach (Particle2D particle in mParticles)
         {
-            foreach (Particle2D otherParticle in mParticles)
+            foreach (Particle2D particle2 in mParticles)
             {
-                if (CollisionDetector.DetectCollision(particle, otherParticle))
-                {
-                    if (particle != otherParticle)
+                 if (particle != particle2)
+                 {
+                    if (CollisionDetector.DetectRecCollision(particle, particle2))
                     {
-                        mParticlesToDelete.Add(particle);
-                        mParticlesToDelete.Add(otherParticle);
+                        if (particle.isPlayer)
+                        {
+                            Vector2 cOfMass = (particle.Velocity + particle2.Velocity) / 2;
+                            Vector2 normal1 = particle2.transform.position - particle.transform.position;
+                            normal1.Normalize();
+                            Vector2 normal2 = particle.transform.position - particle2.transform.position;
+                            normal2.Normalize();
+
+                            particle.Velocity -= cOfMass;
+                            particle.Velocity = Vector2.Reflect(particle.Velocity, normal1);
+                            particle.Velocity += cOfMass;
+
+                            particle2.Velocity -= cOfMass;
+                            particle2.Velocity = Vector2.Reflect(particle2.Velocity, normal2);
+                            particle2.Velocity += cOfMass;
+                        }
                     }
-                }
+                 }
+                
             }
         }
         foreach (Particle2D particle in mParticlesToDelete)
