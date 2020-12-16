@@ -20,13 +20,7 @@ public class Movement : MonoBehaviour
     {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
-
-
-
-
-        //gameObject.transform.position = new Vector2(transform.position.x + (float)(.01 * h), transform.position.y + (float)(.01 * v));
-        //gameObject.transform.position = new Vector2(transform.position.x + (float)(.01 * h), transform.position.y + (float)(.01 * v));
-        P2D.Acceleration += new Vector2(baseAcc.x + (h * speed), baseAcc.y + (v * jump));
+        P2D.Acceleration = new Vector2(baseAcc.x + (h * speed), baseAcc.y + (v * jump));
 
     }
 
