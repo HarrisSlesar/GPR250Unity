@@ -29,7 +29,7 @@ public class ForceManager : MonoBehaviour
     void Start()
     {
         CreateBungeeForceGenerator(GameObject.Find("BungeePlatform"), GameObject.Find("BungeeAnchor").transform.position, 3, 2);
-        CreateSpringForceGenerator(GameObject.Find("BungeePlatform"), GameObject.Find("RodPlatform"), 1, 5);
+        CreateSpringForceGenerator(GameObject.Find("RodAnchorSpring"), GameObject.Find("RodPlatform"), 1, 5);
 
         //CreatePointForceGenerator(new Vector2(0, 0), 1);
         CreateBuoyancyForceGenerator(25, -10, 0.05f);

@@ -47,35 +47,49 @@ public class ParticleManager : MonoBehaviour
                     {
                         if (particle.isPlayer)
                         {
+
                             if (!particle.isGrounded)
                             {
                                 particle.isGrounded = true;
-                                particle.transform.position = new Vector2(particle.transform.position.x, particle2.transform.position.y + particle2.height + particle.height);
+
+
+
+                                if (particle.y > particle2.y + particle2.height)
+                                {
+                                    particle.transform.position = new Vector2(particle.transform.position.x, particle2.transform.position.y + particle2.height + particle.height+.01f);
+                                    if (particle2.canMove)
+                                        particle2.Velocity.y -= (float)particle.Mass / 4;
+
+                                }
+                                else if(particle.y + particle.height < particle2.y - particle2.height)
+                                {
+                                    particle.transform.position = new Vector2(particle.transform.position.x, particle2.transform.position.y - particle2.height - particle.height - .01f);
+                                }
                                 
-                                particle.Velocity = particle2.Velocity;
-                                particle.Acceleration = particle2.Velocity;
-                                /*
-                                Vector2 cOfMass = (particle.Velocity + particle2.Velocity) / 2;
-                                Vector2 normal1 = particle2.transform.position - particle.transform.position;
-                                normal1.Normalize();
-                                Vector2 normal2 = particle.transform.position - particle2.transform.position;
-                                normal2.Normalize();
+                                if(particle.x  > particle2.x + particle2.width)
+                                {
+                                    particle.transform.position = new Vector2(particle2.transform.position.x + particle2.width + particle.width + .01f, particle.transform.position.y);
+                                }
+                                else if (particle.x < particle2.x - particle2.width)
+                                {
+                                    particle.transform.position = new Vector2(particle2.transform.position.x - particle2.width - particle.width - .01f, particle.transform.position.y);
+                                }
 
-                                particle.Velocity -= cOfMass;
-                                particle.Velocity = Vector2.Reflect(particle.Velocity, normal1);
-                                particle.Velocity += cOfMass;
 
-                                particle2.Velocity -= cOfMass;
-                                particle2.Velocity = Vector2.Reflect(particle2.Velocity, normal2);
-                                particle2.Velocity += cOfMass;
-                                */
+
+                                particle.Velocity.y = particle2.Velocity.y;
+                                particle.Acceleration.y = particle2.Velocity.y;
+
+
                             }
+                                
 
                         }
                     }
                     else
                     {
                         particle.isGrounded = false;
+
                     }
                  }
                 

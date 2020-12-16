@@ -15,11 +15,16 @@ public class Particle2D : MonoBehaviour
 
     public float mLeftEdge, mRightEdge, mTopEdge, mBottomEdge;
 
+
+    public bool isMoving = true;
+
+
     public float width, height;
     public float x, y;
 
     public bool isPlayer = false;
     public bool isGrounded = false;
+    public bool canMove = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +48,7 @@ public class Particle2D : MonoBehaviour
         {
             isPlayer = true;
         }
+        
         //else mRadius = 0.0f;
     }
 
