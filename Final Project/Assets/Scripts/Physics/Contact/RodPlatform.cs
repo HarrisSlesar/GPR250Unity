@@ -11,6 +11,12 @@ public class RodPlatform : MonoBehaviour
         ParticleRod newParticleRod = particleLinkObject.AddComponent<ParticleRod>();
         newParticleRod.Initialize(GameObject.Find("RodPlatform"), GameObject.Find("RodAnchor"), 10);
         ContactResolver.Instance.mParticleLinks.Add(newParticleRod);
+        
+        //Swing Platform
+        GameObject particleLinkObject2 = new GameObject("LINK " + GameObject.Find("SwingAnchor").name + " " + GameObject.Find("SwingPlatform").name);
+        ParticleRod particleRod = particleLinkObject.AddComponent<ParticleRod>();
+        particleRod.Initialize(GameObject.Find("SwingPlatform"), GameObject.Find("SwingAnchor"), 10);
+        ContactResolver.Instance.mParticleLinks.Add(particleRod);
     }
 
     // Update is called once per frame
