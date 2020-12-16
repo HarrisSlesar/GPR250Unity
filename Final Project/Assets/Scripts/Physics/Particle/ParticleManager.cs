@@ -75,8 +75,6 @@ public class ParticleManager : MonoBehaviour
                                     particle.transform.position = new Vector2(particle2.transform.position.x - particle2.width - particle.width - .01f, particle.transform.position.y);
                                 }
 
-
-
                                 particle.Velocity.y = particle2.Velocity.y;
                                 particle.Acceleration.y = particle2.Velocity.y;
 
