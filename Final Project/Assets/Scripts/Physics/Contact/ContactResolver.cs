@@ -31,7 +31,7 @@ public class ContactResolver : MonoBehaviour
     {
 
     }
-    private void Update()
+    private void FixedUpdate()
     {
         foreach (Particle2DLink ParticleLink in mParticleLinks)
         {

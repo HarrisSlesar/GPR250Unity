@@ -6,7 +6,7 @@ public class AnchorRotate : MonoBehaviour
 {
     public Transform target;
 
-    private void Update()
+    private void FixedUpdate()
     {
        
            

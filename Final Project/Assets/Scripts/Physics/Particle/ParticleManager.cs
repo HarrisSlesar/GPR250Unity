@@ -34,7 +34,7 @@ public class ParticleManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         foreach (Particle2D particle in mParticles)

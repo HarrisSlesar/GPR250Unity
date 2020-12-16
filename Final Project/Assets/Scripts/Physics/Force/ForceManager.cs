@@ -36,7 +36,7 @@ public class ForceManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         foreach (ForceGenerator2D forceGenerator in mForceGenerators)

@@ -21,7 +21,7 @@ public class Integrator : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         foreach (Particle2D particle in ParticleManager.Instance.mParticles)
         {

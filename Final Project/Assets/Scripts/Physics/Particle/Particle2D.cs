@@ -53,7 +53,7 @@ public class Particle2D : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         x = transform.position.x;
         y = transform.position.y;

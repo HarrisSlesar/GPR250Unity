@@ -16,7 +16,7 @@ public class Movement : MonoBehaviour
         P2D = GetComponent<Particle2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
