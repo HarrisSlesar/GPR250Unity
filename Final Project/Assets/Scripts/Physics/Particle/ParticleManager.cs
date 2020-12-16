@@ -45,52 +45,53 @@ public class ParticleManager : MonoBehaviour
                  {
                     if (CollisionDetector.DetectRecCollision(particle, particle2))
                     {
+
                         if (particle.isPlayer)
                         {
-
-                            if (!particle.isGrounded)
+                            if (particle.GetComponent<Movement>().hasJumped)
                             {
-                                particle.isGrounded = true;
+                                particle.GetComponent<Movement>().jumpNum = 1;
+                                particle.GetComponent<Movement>().hasJumped = false;
+                            }
 
 
-
-                                if (particle.y > particle2.y + particle2.height)
+                            if (particle.y > particle2.y + particle2.height)
+                            {
+                                particle.transform.position = new Vector2(particle.transform.position.x, particle2.transform.position.y + particle2.height + particle.height + .01f);
+                                if (particle2.canMove)
                                 {
-                                    particle.transform.position = new Vector2(particle.transform.position.x, particle2.transform.position.y + particle2.height + particle.height+.01f);
-                                    if (particle2.canMove)
-                                        particle2.Velocity.y -= (float)particle.Mass / 4;
-
+                                    particle2.Velocity.y -= (float)particle.Mass/4;
                                 }
-                                else if(particle.y + particle.height < particle2.y - particle2.height)
-                                {
-                                    particle.transform.position = new Vector2(particle.transform.position.x, particle2.transform.position.y - particle2.height - particle.height - .01f);
-                                }
-                                
-                                if(particle.x  > particle2.x + particle2.width)
-                                {
-                                    particle.transform.position = new Vector2(particle2.transform.position.x + particle2.width + particle.width + .01f, particle.transform.position.y);
-                                }
-                                else if (particle.x < particle2.x - particle2.width)
-                                {
-                                    particle.transform.position = new Vector2(particle2.transform.position.x - particle2.width - particle.width - .01f, particle.transform.position.y);
-                                }
-
                                 particle.Velocity.y = particle2.Velocity.y;
                                 particle.Acceleration.y = particle2.Velocity.y;
-
-
                             }
-                                
+                            else if (particle.y + particle.height < particle2.y - particle2.height)
+                            {
+                                particle.transform.position = new Vector2(particle.transform.position.x, particle2.transform.position.y - particle2.height - particle.height - .01f);
+                                particle.Velocity.y = particle2.Velocity.y;
+                                particle.Acceleration.y = particle2.Velocity.y;
+                            }
 
+                            if (particle.x > particle2.x + particle2.width)
+                            {
+                                particle.transform.position = new Vector2(particle2.transform.position.x + particle2.width + particle.width + .01f, particle.transform.position.y);
+
+                                particle.Velocity.x = particle2.Velocity.x;
+                                particle.Acceleration.x = particle2.Velocity.x;
+                                if (particle2.canMove)
+                                    particle2.Velocity.x -= (float)particle.Mass / 4;
+                            }
+                            else if (particle.x < particle2.x - particle2.width)
+                            {
+                                particle.transform.position = new Vector2(particle2.transform.position.x - particle2.width - particle.width - .01f, particle.transform.position.y);
+                                particle.Velocity.x = particle2.Velocity.x;
+                                particle.Acceleration.x = particle2.Velocity.x;
+                                if (particle2.canMove)
+                                    particle2.Velocity.x += (float)particle.Mass / 4;
+                            }
                         }
                     }
-                    else
-                    {
-                        particle.isGrounded = false;
-
-                    }
                  }
-                
             }
         }
         foreach (Particle2D particle in mParticlesToDelete)

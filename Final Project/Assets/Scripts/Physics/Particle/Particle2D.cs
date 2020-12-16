@@ -62,10 +62,10 @@ public class Particle2D : MonoBehaviour
         mBottomEdge = y - height;
         mTopEdge = y + height;
 
-        if (!isGrounded)
-        {
-            Acceleration = new Vector2(0, -10);
-        }
+        
+        
+        Acceleration = new Vector2(0, -10);
+        
     }
     void OnBecameInvisible()
     {

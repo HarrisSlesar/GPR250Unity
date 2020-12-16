@@ -9,8 +9,9 @@ public class Movement : MonoBehaviour
     
     public float speed;
     public float jump;
+    public bool hasJumped = false;
+    public int jumpNum = 1;
     Particle2D P2D;
-    Vector2 baseAcc = new Vector2(0, -10);
     void Start()
     {
         P2D = GetComponent<Particle2D>();
@@ -19,9 +20,14 @@ public class Movement : MonoBehaviour
     void FixedUpdate()
     {
         float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
-        P2D.Acceleration = new Vector2(baseAcc.x + (h * speed), baseAcc.y + (v * jump));
-
+        P2D.Velocity = new Vector2(h * speed, P2D.Velocity.y);
+        //new Vector2(baseAcc.x + (h * speed), baseAcc.y + (v * jump));
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && jumpNum > 0)   //makes player jump
+        {
+            P2D.Velocity = new Vector2(P2D.Velocity.x, jump);
+            jumpNum--;
+            hasJumped = true;
+        }
     }
 
 }
